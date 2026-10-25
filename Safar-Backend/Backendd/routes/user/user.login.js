@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     const { username, password } = req.body;
 
     const result = await client.query(`SELECT user_id, password FROM PASSENGER where username=$1;`, [username]);
-    if (result.rows[0].user_id) {
+    if (result.rows.length > 0) {
         const isValid = await bcrypt.compare(password, result.rows[0].password);
 
         if (isValid) {
@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
             const token = jwt.sign({
                     user_id: result.rows[0].user_id
                 },process.env.jwt_secret,{
-                    expiresIn: '5m'
+                    expiresIn: '1d'
                 });
             console.log("LOGIN!!");
             res.status(200).json({

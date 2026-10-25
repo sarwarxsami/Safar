@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useData } from './AppContext';
-import { fetchWithAuth, API_URL } from './utils';
+import { API_URL } from './utils';
 import './login.css';
 
 const Login = ({ setAuth }) => {
@@ -28,11 +28,12 @@ const Login = ({ setAuth }) => {
     try {
       const body = { username, password };
 
-      const response = await fetchWithAuth(`${API_URL}/user/login`, {
+      // Plain fetch: a 401 here means bad credentials, not an expired session
+      const response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      }, navigate);
+      });
 
       const json = await response.json();
 

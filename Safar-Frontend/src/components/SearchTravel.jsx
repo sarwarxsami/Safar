@@ -16,6 +16,7 @@ const SearchTravel = () => {
   const [dateSearched, setDate] = useState(null);
   const [trains, setTrains] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [expandedTrain, setExpandedTrain] = useState(null);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ const SearchTravel = () => {
       setToStationSearch(inputValueTo);
       setSearchClicked(true);
       setExpandedTrain(null);
+      setLoading(true);
 
       const body = {
         fromcity: inputValueFrom,
@@ -92,6 +94,8 @@ const SearchTravel = () => {
       console.error(err);
       alert('Something went wrong with the search.');
       setTrains([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -266,7 +270,13 @@ const SearchTravel = () => {
         minWidth: '600px',
         marginTop: '1rem' // Added margin to align with search card
       }}>
-        {searchClicked && trains.length === 0 && (
+        {loading && (
+          <div style={{ marginTop: '2rem', color: 'white', textAlign: 'center', padding: '2rem' }}>
+            <h5>Searching trains...</h5>
+          </div>
+        )}
+
+        {searchClicked && !loading && trains.length === 0 && (
           <div className="not-found" style={{ 
             marginTop: '2rem', 
             color: 'white',
