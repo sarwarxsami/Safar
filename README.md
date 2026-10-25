@@ -35,7 +35,7 @@ erDiagram
     TRAIN ||--o{ TIME_TABLE : "stops at"
     STATION ||--o{ TIME_TABLE : "is a stop in"
     TRAIN ||--o{ TRAIN_CLASS : "offers"
-    CLASS ||--o{ TRAIN_CLASS : "offered as"
+    CLASSES ||--o{ TRAIN_CLASS : "offered as"
     TRAIN_CLASS ||--|| SEAT : "capacity"
     TRAIN_CLASS ||--o{ LAYOUT : "seat map"
     LAYOUT ||--o{ SEAT_COORDINATE : "positions"
