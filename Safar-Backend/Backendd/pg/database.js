@@ -1,6 +1,7 @@
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client(process.env.DATABASE_URL ? {
+// A pool reconnects on its own when the server drops idle connections (e.g. Neon autosuspend)
+const client = new Pool(process.env.DATABASE_URL ? {
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 } : {
@@ -11,7 +12,9 @@ const client = new Client(process.env.DATABASE_URL ? {
   database: process.env.DATABASE
 });
 
-client.connect()
+client.on('error', err => console.error("Idle PostgreSQL connection error", err.message));
+
+client.query('SELECT 1')
   .then(() => console.log("Connected to PostgreSQL"))
   .catch(err => console.error("Connection error", err.stack));
 

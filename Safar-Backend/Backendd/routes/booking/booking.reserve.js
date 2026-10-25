@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {client} = require('../../pg/database.js');
+const {client: pool} = require('../../pg/database.js');
 const checkToken = require('../../middlewares/checkToken.js');
 const checkDoubleTicket = require('../../middlewares/checkDoubleTicket.js');
 
@@ -31,6 +31,8 @@ router.post('/', checkToken, checkDoubleTicket, async (req, res) => {
     }
   }
 
+  // Transaction queries must all run on the same pooled connection
+  const client = await pool.connect();
   try {
     await client.query('BEGIN');
 
@@ -112,6 +114,8 @@ router.post('/', checkToken, checkDoubleTicket, async (req, res) => {
     await client.query('ROLLBACK');
     console.error('Error creating ticket with seat reservations:', err);
     return res.status(500).json({ error: 'Internal server error' });
+  } finally {
+    client.release();
   }
 });
 
