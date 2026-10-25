@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 import { useData } from './AppContext';
 import Popup from './Popup';
 
@@ -71,7 +71,7 @@ const BookAvailableSeat = () => {
     try {
       const body = { fromcity: fromStation, tocity: toStation, doj: journeyDate };
 
-      const response = await fetchWithAuth('http://localhost:5000/booking/search', {
+      const response = await fetchWithAuth(`${API_URL}/booking/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -139,7 +139,7 @@ const BookAvailableSeat = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetchWithAuth('http://localhost:5000/booking/reserve', {
+      const res = await fetchWithAuth(`${API_URL}/booking/reserve`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ const TrainRoute = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/trains/${id}`);
+                const response = await fetch(`http://13.234.186.159:3001/trains/${id}`);
                 const rec = await response.json();
                 console.log(rec.data.result);
                 setRoute(rec.data.result);

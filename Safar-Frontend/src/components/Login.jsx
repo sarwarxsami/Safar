@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useData } from './AppContext';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 import './login.css';
 
 const Login = ({ setAuth }) => {
@@ -28,7 +28,7 @@ const Login = ({ setAuth }) => {
     try {
       const body = { username, password };
 
-      const response = await fetchWithAuth("http://localhost:5000/user/login", {
+      const response = await fetchWithAuth(`${API_URL}/user/login`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

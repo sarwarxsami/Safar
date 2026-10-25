@@ -68,7 +68,7 @@ const Admin = () => {
     // const stations = 5; // Example number of stations
     try {
       console.log(number_of_classes, number_of_stations, trainId, trainName, routeId, routeName);
-      const result = await fetchWithAuth(`http://localhost:3001/admin/addTrain/${trainId}/${trainName}/${routeId}/${number_of_stations}/${number_of_classes}`, {}, navigate);
+      const result = await fetchWithAuth(`http://13.234.186.159:3001/admin/addTrain/${trainId}/${trainName}/${routeId}/${number_of_stations}/${number_of_classes}`, {}, navigate);
       const data = await result.json();
       console.log(data);
       setMessage('');
@@ -170,7 +170,7 @@ const Admin = () => {
 
     console.log('-----------------')
     try {
-      const result = await fetchWithAuth('http://localhost:3001/admin/addTrain/confirm', {
+      const result = await fetchWithAuth('http://13.234.186.159:3001/admin/addTrain/confirm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

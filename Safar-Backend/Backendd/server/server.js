@@ -4,7 +4,7 @@ const server=require('../controller/controller.main.js');
 //const wss = WebSocket.createWebSocketServer(server);
 
 
-server.listen(5000,()=>{
+server.listen(process.env.PORT || 5000,()=>{
 });
 
 module.exports=server;

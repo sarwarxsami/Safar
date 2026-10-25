@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './comp.css';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 
 const SearchTrain = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const SearchTrain = () => {
     setHasSearched(true);
 
     try {
-      const res = await fetchWithAuth('http://localhost:5000/booking/trainDetails', {
+      const res = await fetchWithAuth(`${API_URL}/booking/trainDetails`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ train_name: trimmed }),

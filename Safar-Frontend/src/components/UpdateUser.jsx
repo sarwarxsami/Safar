@@ -17,7 +17,7 @@ const UpdateUser = () => {
         // Fetch user data here and update state accordingly
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/users/${id}`);
+                const response = await fetch(`http://13.234.186.159:3001/users/${id}`);
                 const userData = await response.json();
                 setUser(userData.data.result);
                 // Set state variables here based on userData
@@ -44,13 +44,13 @@ const UpdateUser = () => {
                 return;
             }
             const body = { address, post_code, phone_number, email, password, date_of_birth, birth_registration_number, new_password }
-            const res = await fetch(`http://localhost:3001/users/${id}/update`,
+            const res = await fetch(`http://13.234.186.159:3001/users/${id}/update`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
                 });
-            window.location = "/";
+            window.location.hash = "#/";
             console.log("updated")
             console.log(res)
         } catch (err) {

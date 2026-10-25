@@ -7,7 +7,7 @@ const TrainInfo = () => {
 
     const getTrains = async () => {
         try {
-            const response = await fetch("http://localhost:3001/trains");
+            const response = await fetch("http://13.234.186.159:3001/trains");
             const jsondata = await response.json();
             setTrains(jsondata.data?.trains || []); // Safe access and default to an empty array
         } catch (err) {

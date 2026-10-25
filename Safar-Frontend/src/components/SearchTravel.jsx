@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { useData } from './AppContext';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 import './comp.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -74,7 +74,7 @@ const SearchTravel = () => {
         doj: formatDate(dateSearched),
       };
 
-      const response = await fetchWithAuth('http://localhost:5000/booking/search', {
+      const response = await fetchWithAuth(`${API_URL}/booking/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

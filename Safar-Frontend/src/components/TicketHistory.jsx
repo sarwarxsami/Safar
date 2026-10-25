@@ -107,7 +107,7 @@ const TicketHistory = () => {
             try {
                 if (!userId) return;
 
-                const response = await fetch(`http://localhost:3001/users/${userId}/tickets`);
+                const response = await fetch(`http://13.234.186.159:3001/users/${userId}/tickets`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch ticket history');
                 }
@@ -144,7 +144,7 @@ const TicketHistory = () => {
     function deleteTransaction(transactionId) {
         const deleteTrans = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/transaction/delete/${transactionId}`, {
+                const response = await fetch(`http://13.234.186.159:3001/transaction/delete/${transactionId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ const TicketHistory = () => {
 
             try {
                 console.log('///////////////////////////////////////refund clickec')
-                const response = await fetch(`http://localhost:3001/transaction/refund/${userId}/${transactionId}`, {
+                const response = await fetch(`http://13.234.186.159:3001/transaction/refund/${userId}/${transactionId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ const TicketHistory = () => {
 
     const sendTransactionId = async (transactionId, oldTransactionId, transMode) => {
         try {
-            const response = await fetch(`http://localhost:3001/transaction/${userId}/${transactionId}/${oldTransactionId}/${transMode}`, {
+            const response = await fetch(`http://13.234.186.159:3001/transaction/${userId}/${transactionId}/${oldTransactionId}/${transMode}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ const TicketHistory = () => {
         console.log("review : ", review);
         try {
             console.log("rating  : " + rating);
-            const response = await fetch(`http://localhost:3001/send/review/${userId}/${trainName}/${className}`, {
+            const response = await fetch(`http://13.234.186.159:3001/send/review/${userId}/${trainName}/${className}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

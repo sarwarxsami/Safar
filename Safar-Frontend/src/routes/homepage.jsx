@@ -4,6 +4,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/f
 import { useNavigate } from 'react-router-dom';
 import '../components/home.css';
 import Popup from '../components/Popup';
+import { API_URL } from '../components/utils';
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Homepage = () => {
 
   const handleBookNowClick = async () => {
     try {
-      const response = await fetch('http://localhost:5000/booking/getStations');
+      const response = await fetch(`${API_URL}/booking/getStations`);
       if (!response.ok) throw new Error('Failed to fetch stations');
 
       const data = await response.json();

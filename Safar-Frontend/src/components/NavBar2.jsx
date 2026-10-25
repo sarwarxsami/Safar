@@ -60,7 +60,7 @@ const NavBar2 = () => {
                 <a href="">Home</a>
                 <a href="">About</a>
                 <a href="">Contact</a>
-                <a href="/trains">
+                <a href="#/trains">
                     <BsFillTrainFreightFrontFill className="navbar-train-icon" />
                 </a>
                 <Link to={`/users/${id}`} className="primary-button">{name}</Link>

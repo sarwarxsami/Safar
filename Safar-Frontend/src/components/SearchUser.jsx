@@ -12,7 +12,7 @@ const SearchUser = () => {
         setInputValue(value);
 
         try {
-            const response = await fetch(`http://localhost:3001/search?name=${value}`, {
+            const response = await fetch(`http://13.234.186.159:3001/search?name=${value}`, {
                 method: "GET",
             });
 
@@ -39,7 +39,7 @@ const SearchUser = () => {
 
     const onSearch = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/trains/name/search?name=${selectedSuggestion}`, {
+            const response = await fetch(`http://13.234.186.159:3001/trains/name/search?name=${selectedSuggestion}`, {
                 method: "GET",
             });
 

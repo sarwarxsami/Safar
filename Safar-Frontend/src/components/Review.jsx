@@ -32,7 +32,7 @@ const Review = () => {
         const trainQueryParam = encodeURIComponent(trainID);
         const classTypeQueryParam = encodeURIComponent(classType);
         
-        const url = `http://localhost:3001/review?trainID=${trainQueryParam}&classType=${classTypeQueryParam}`;
+        const url = `http://13.234.186.159:3001/review?trainID=${trainQueryParam}&classType=${classTypeQueryParam}`;
         
         const response = await fetchWithAuth(url, {}, navigate);
         const data = await response.json();

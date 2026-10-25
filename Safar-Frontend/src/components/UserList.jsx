@@ -17,7 +17,7 @@ const UserList = () => {
     // delete user
     const deleteUser = async (id) => {
         try {
-            const deleteUser = await fetch(`http://localhost:3001/users/${id}`,
+            const deleteUser = await fetch(`http://13.234.186.159:3001/users/${id}`,
                 {
                     method: "DELETE"
                 });
@@ -32,11 +32,11 @@ const UserList = () => {
     //update user
     const updateUser = async (user) => {
         try {
-            const updateUser = await fetch(`http://localhost:3001/users/${user.user_id}/update`,
+            const updateUser = await fetch(`http://13.234.186.159:3001/users/${user.user_id}/update`,
             {
                 method : "PUT"
             });
-            window.location = "/";
+            window.location.hash = "#/";
             //console.log("user updated " + user.user_id);
         }
         catch (err) {
@@ -47,7 +47,7 @@ const UserList = () => {
 
     const getUsers = async () => {
         try {
-            const response = await fetch("http://localhost:3001/users")
+            const response = await fetch("http://13.234.186.159:3001/users")
             const jsondata = await response.json();
             // console.log(data);
             // if (!response.ok) {

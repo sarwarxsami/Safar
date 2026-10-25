@@ -16,7 +16,7 @@ const TrainInformation = () => {
         const fetchData = async () => {
             console.log("=====================================")
             try {
-                const response = await fetch("http://localhost:3001/admin/trains", {
+                const response = await fetch("http://13.234.186.159:3001/admin/trains", {
                     method: "GET",
                 });
                 const result = await response.json();

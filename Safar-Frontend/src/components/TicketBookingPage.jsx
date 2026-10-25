@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import Popup from './Popup';
+import { API_URL } from './utils';
 
 const customStyles = {
   content: {
@@ -54,7 +55,7 @@ const TicketBookingPage = () => {
 
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/booking/getTicket', {
+        const response = await fetch(`${API_URL}/booking/getTicket`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ const TicketBookingPage = () => {
   const autoCancelTicket = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/booking/cancelTicket', {
+      const response = await fetch(`${API_URL}/booking/cancelTicket`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +157,7 @@ const TicketBookingPage = () => {
   const handleCancelTicket = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/booking/cancelTicket', {
+      const response = await fetch(`${API_URL}/booking/cancelTicket`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: safar-backend
+    runtime: node
+    plan: free
+    rootDir: Safar-Backend/Backendd
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        sync: false
+      - key: jwt_secret
+        generateValue: true

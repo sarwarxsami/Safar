@@ -4,6 +4,7 @@ import { useData } from './AppContext';
 import Modal from 'react-modal';
 import ErrorModal from './ErrorModal';
 import './showuserpg.css';
+import { API_URL } from './utils';
 
 // Add this helper function somewhere in your component file
 const formatTimeRemaining = (timeString) => {
@@ -168,7 +169,7 @@ const ShowUser = () => {
         setLoadingTickets(true);
         
         // Fetch user data
-        const userResponse = await fetch(`http://localhost:5000/user/info/${id}`);
+        const userResponse = await fetch(`${API_URL}/user/info/${id}`);
         const userRec = await userResponse.json();
         setUserData(userRec.data?.result || {
           first_name: 'NULL',
@@ -177,7 +178,7 @@ const ShowUser = () => {
         });
 
         // Fetch tickets
-        const ticketsResponse = await fetch(`http://localhost:5000/user/printTicket/${id}`);
+        const ticketsResponse = await fetch(`${API_URL}/user/printTicket/${id}`);
         const ticketsJson = await ticketsResponse.json();
         
         if (ticketsJson.success) {
@@ -232,7 +233,7 @@ const ShowUser = () => {
         return;
       }
       const body = { password, new_password };
-      const res = await fetch(`http://localhost:5000/user/info/update/${userData.user_id}`, {
+      const res = await fetch(`${API_URL}/user/info/update/${userData.user_id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -266,7 +267,7 @@ const ShowUser = () => {
       }
 
       const body = { password: deletePassword };
-      const response = await fetch(`http://localhost:5000/user/info/delete/${userData.user_id}`, {
+      const response = await fetch(`${API_URL}/user/info/delete/${userData.user_id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
@@ -295,7 +296,7 @@ const ShowUser = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/booking/cancelTicket', {
+      const response = await fetch(`${API_URL}/booking/cancelTicket`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -321,7 +322,7 @@ const ShowUser = () => {
 
       // Refresh ticket data
       setLoadingTickets(true);
-      const res = await fetch(`http://localhost:5000/user/printTicket/${id}`);
+      const res = await fetch(`${API_URL}/user/printTicket/${id}`);
       const json = await res.json();
 
       if (json.success) {

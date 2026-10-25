@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 
 function AddUser() {
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ function AddUser() {
         password: formData.password
       };
       
-      const response = await fetchWithAuth("http://localhost:5000/user/register", {
+      const response = await fetchWithAuth(`${API_URL}/user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)

@@ -22,7 +22,7 @@ export default LoginPage;
 
 // const token = localStorage.getItem("access_token");
 
-// const response = await fetch("http://localhost:3000/some/protected/route", {
+// const response = await fetch("http://13.234.186.159:3000/some/protected/route", {
 //   method: 'GET', // or POST, etc.
 //   headers: {
 //     "Authorization": `Bearer ${token}`,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsFillTrainFreightFrontFill } from "react-icons/bs";
 import { useData } from './AppContext';
-import { fetchWithAuth } from './utils';
+import { fetchWithAuth, API_URL } from './utils';
 
 const NavBar = () => {
   const { loginState, userId } = useData();
@@ -22,7 +22,7 @@ const NavBar = () => {
 
   const handleTrainClick = async () => {
     try {
-      const res = await fetchWithAuth('http://localhost:5000/booking/allTrainNames', {}, navigate);
+      const res = await fetchWithAuth(`${API_URL}/booking/allTrainNames`, {}, navigate);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
